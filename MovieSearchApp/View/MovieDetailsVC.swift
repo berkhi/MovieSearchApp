@@ -102,7 +102,7 @@ class MovieDetailsVC: UIViewController, MovieDetailViewModelOutput {
     init(viewModel: MovieDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        self.viewModel.outputDetail = self
+        self.viewModel.movieDetailOutput = self
     }
     
     required init?(coder: NSCoder) {

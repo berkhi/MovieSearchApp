@@ -9,11 +9,11 @@ import Foundation
 
 class MovieViewModel{
     private let movieService: APIManagerProtocol
-    var output: MovieViewModelOutput
+    var movieOutput: MovieViewModelOutput
     
-    init(movieService: APIManagerProtocol, output: MovieViewModelOutput) {
+    init(movieService: APIManagerProtocol, movieOutput: MovieViewModelOutput) {
         self.movieService = movieService
-        self.output = output
+        self.movieOutput = movieOutput
     }
     
     func fetchMovieSearchs(url: URL){
@@ -22,17 +22,17 @@ class MovieViewModel{
                 switch result {
                 case .success(let movie):
 //                    print("Data received:", movie)
-                    self.output.updateView(search: movie, error: nil)
+                    self.movieOutput.updateView(search: movie, error: nil)
                 case .failure(let customError):
                     switch customError{
                     case .decodingError:
-                        self.output.updateView(search: nil, error: "Error! Decoding error.")
+                        self.movieOutput.updateView(search: nil, error: "Error! Decoding error.")
                     case .networkError:
-                        self.output.updateView(search: nil, error: "Error! Network error.")
+                        self.movieOutput.updateView(search: nil, error: "Error! Network error.")
                     case .serverError:
-                        self.output.updateView(search: nil, error: "Error! Server error.")
+                        self.movieOutput.updateView(search: nil, error: "Error! Server error.")
                     case .urlError:
-                        self.output.updateView(search: nil, error: "Error! URL error.")
+                        self.movieOutput.updateView(search: nil, error: "Error! URL error.")
                     }
                 }
             }

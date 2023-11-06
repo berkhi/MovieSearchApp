@@ -9,7 +9,7 @@ import Foundation
 
 class MovieDetailViewModel{
     private let movieDetailService: APIManagerProtocol
-    weak var outputDetail: MovieDetailViewModelOutput?
+    weak var movieDetailOutput: MovieDetailViewModelOutput?
     
     init(movieDetailService: APIManagerProtocol) {
         self.movieDetailService = movieDetailService
@@ -20,17 +20,17 @@ class MovieDetailViewModel{
                 switch result {
                 case .success(let movie):
                     print("Data received:", movie)
-                    self.outputDetail?.updateView(search: movie, error: nil)
+                    self.movieDetailOutput?.updateView(search: movie, error: nil)
                 case .failure(let customError):
                     switch customError{
                     case .decodingError:
-                        self.outputDetail?.updateView(search: nil, error: "Error! Decoding error.")
+                        self.movieDetailOutput?.updateView(search: nil, error: "Error! Decoding error.")
                     case .networkError:
-                        self.outputDetail?.updateView(search: nil, error: "Error! Network error.")
+                        self.movieDetailOutput?.updateView(search: nil, error: "Error! Network error.")
                     case .serverError:
-                        self.outputDetail?.updateView(search: nil, error: "Error! Server error.")
+                        self.movieDetailOutput?.updateView(search: nil, error: "Error! Server error.")
                     case .urlError:
-                        self.outputDetail?.updateView(search: nil, error: "Error! URL error.")
+                        self.movieDetailOutput?.updateView(search: nil, error: "Error! URL error.")
                     }
                 }
             

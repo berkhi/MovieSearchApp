@@ -58,7 +58,7 @@ class MovieSearchVC: UIViewController, MovieViewModelOutput {
     init(viewModel: MovieViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        self.viewModel.output = self
+        self.viewModel.movieOutput = self
     }
     
     required init?(coder: NSCoder) {
@@ -163,7 +163,7 @@ extension MovieSearchVC: UISearchResultsUpdating{
 
             if let url = URL(string: urlString) {
                 let movieService: APIManagerProtocol = APIManager()
-                let viewModel = MovieViewModel(movieService: movieService, output: self)
+                let viewModel = MovieViewModel(movieService: movieService, movieOutput: self)
                 viewModel.fetchMovieSearchs(url: url)
             }
         }

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, MovieViewModelOutput {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         let movieService: APIManagerProtocol = APIManager()
-        let viewModel = MovieViewModel(movieService: movieService, output: self)
+        let viewModel = MovieViewModel(movieService: movieService, movieOutput: self)
         window?.rootViewController = UINavigationController(rootViewController: MovieSearchVC(viewModel: viewModel))
         window?.makeKeyAndVisible()
     }
